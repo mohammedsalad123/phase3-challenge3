@@ -1,227 +1,69 @@
-# Restaurant Review System with SQLAlchemy
-
-## Phase 3 Week 3 Code Challenge
-
-[![license](https://img.shields.io/badge/license-%20MIT%20-green.svg)](./LICENSE)
-![python version](https://img.shields.io/badge/python-3.10.12+-blue.svg)
-![SQLAlchemy version](https://img.shields.io/badge/SQLAlchemy-2.0.20-cyan.svg)
-![alembic version](https://img.shields.io/badge/alembic-1.12.0-orange.svg)
-![faker version](https://img.shields.io/badge/faker-1.12.0-mint.svg)
-![platforms](https://img.shields.io/badge/Platforms-Linux%20|%20Windows%20|%20Mac%20-purple.svg)
-***
-
-## Introduction
-
-This is a Restaurant Review System built with Python and utilizes `SQLAlchemy and Alembic Migrations`, `SQLAlchemy Relationships`, `Class and Instance Methods`, and `SQLAlchemy Querying` working with a Yelp-style domain with three models: `Restaurant`, `Review`, and `Customer`.
-
-***NOTE:** Some methods in the deliverables have been changed so they don't conflict with table names.*
-
-***
-
-## Table of Contents
-
-- [Prerequisites](#prerequisites)
-- [Features](#features)
-- [Project Setup](#project-setup)
-- [Entity Relationship Diagram](#entity-relationship-diagram)
-- [Usage](#usage)
-  - [Methods](#methods)
-    - [Restaurant](#restaurant)
-    - [Usage](#customer)
-    - [Review](#review)
-- [Author & License](#author--license)
-
-***
-
-## Prerequisites
-
-The packages are included in the `Pipfile`, and can be installed through it into the virtual environment.
-
-- Python3 v3.10 +
-
-- SQLAlchemy v2.0.20
-
-- Alembic v1.12.0
-
-- Faker v19.3.1
-
-***
-
-## Features
-
-- Create and manage customer and restaurant profiles
-- Add, retrieve, and delete reviews for restaurants
-- Find customers and restaurants based on reviews
-- Retrieve a list of all reviews
-- Find the fanciest restaurant in the list
-- Find a customer's favorite restaurant
-
-***
-
-## Project Setup
-
-### 1. Clone the repository
-
-```python
-git clone https://github.com/leon-kxng/sqlalchemy_restaurants
-```
-
-### 2. Navigate to the project's directory
-
-```python
-cd sqlalchemy_restaurants
-```
-
-### 3. Install required dependencies
-
-The root directory of this repository contains the `Pipfile` with all the required dependencies. To install them into your virtual environment, run this command from the `root` directory:
-
-```python
-pipenv install
-```
-
-If `pipenv` is not already installed, you can do so using `pip`:
-
-```python
-pip install pipenv
-```
-
-### 4. Activate the virtual environment
-
-```python
-pipenv shell
-```
-
-### 5. Navigate into the `app` directory
-
-Run all commands from within this directory
-
-```python
-cd app
-```
-
-### 5. Run `main.py` for testing
-
-```python
-./main.py
-```
-
-***
-
-## Entity Relationship Diagram
-
-The Restaurant Review System uses the `Association Object Models` for the associations and relationships between the three models: `Restaurant`, `Customer`, and `Reviews`.
-
-A `Restaurant` has many `Review`s, a `Customer` has many `Review`s, and a `Review` belongs to a `Restaurant` and to a `Customer`. The ERD below shows these relationships:
-
-![ERD](./erd.png)
-
-***
-
-## Usage
-
-You can use the Restaurant Review System to simulate interactions between customers, restaurants, and reviews to:
-
-1. Create customer and restaurant instances.
-2. Add reviews using the add_review method.
-3. Retrieve information about customers, restaurants, and reviews using the provided methods.
-
-For example, you should be able to call *`session.query(Customer).first().all_restaurants()`* and see a list of the restaurants for the first customer in the database based on your seed data; and *`session.query(Review).first().customer`* should return the customer for the first review in the database.
-
-### Methods
-
-Use the `seed.py` file to create sample data to test the models and relationships by the following methods.
-
-#### Restaurant
-
-***
-
-`self.all_reviews()`
-
-- *changed from `self.reviews()` in deliverables*
-
-- returns a collection of all the reviews for the `Restaurant`
-
-`self.all_customers()`
-
-- *changed from `self.customers()` in deliverables.*
-
-- returns a collection of all the customers who reviewed the `Restaurant`
-
-`cls.fanciest()`
-
-- A **class** method that returns ***one*** restaurant instance for the restaurant that has the highest   price
-
-`self.all_reviews_formatted()`
-
-- returns a list of strings with all the reviews for this restaurant in the following format:
-
-```python
-[ "Review for {insert restaurant name} by {insert customer's full name}: {insert review star_rating} stars.",
-
-"Review for {insert restaurant name} by {insert customer's full name}: {insert review star_rating} stars.", ]
-```
-
-#### Customer
-
-***
-
-`self.all_reviews()`
-
-- *changed from `self.reviews()` in deliverables.*
-
-- returns a collection of all the reviews that the `Customer` has left
-
-`self.all_restaurants()`
-
-*changed from `self.restaurants()` in deliverables.*
-
-- returns a collection of all the restaurants that the `Customer` has reviewed
-
-`self.full_name()`
-
-- returns the full name of the customer, with the first name and the last name  concatenated, Western style.
-
-`self.favorite_restaurant()`
-
-- returns the restaurant instance that has the highest star rating from this customer
-
-`self.add_review(restaurant, rating)`
-
-- takes a `restaurant` (an instance of the `Restaurant` class) and a rating
-
-- creates a new review for the restaurant with the given `restaurant_id`
-
-`self.delete_reviews(restaurant)`
-
-- takes a `restaurant` (an instance of the `Restaurant` class) and
-
-- removes **all** their reviews for this restaurant
-
-#### Review
-
-***
-
-`review.customer()`
-
-- returns the `Customer` instance for this review
-
-`review.restaurant()`
-
-- returns the `Restaurant` instance for this review
-
-`review.full_review()`
-
-- returns a string in the following format:
-
-```text
-Review for {insert restaurant name} by {customer full_name}: {review star_rating} stars.
-```
-
-***
-
-## Author & License
-
-Authored by [leon-kxng](https://github.com/leon-kxng).
-
-Licensed under the [MIT License](LICENSE) - see the [LICENSE](LICENSE) file for details.
+# phase3-challenge2
+Restaurant Review Domain - SQLAlchemy Project
+ ## Overview
+This project is a Python application that models a restaurant review domain using SQLAlchemy, a powerful Object-Relational Mapping (ORM) library. The application defines three models: Restaurant, Review, and Customer. These models are interconnected to represent a many-to-many relationship between Restaurant and Customer through the Review model.
+
+## Project Structure
+The project follows a structured layout with separate files for each model:
+
+models/
+
+restaurant.py - Contains the Restaurant model
+customer.py - Contains the Customer model
+review.py - Contains the Review model
+migrations/ - Folder to store database migration files
+
+seeds.py - File for creating sample instances to test models and relationships
+
+app.py - Main file to execute the application and test the defined methods
+
+Setup
+Clone the repository:
+
+
+git clone https://github.com/your-username/restaurant-review-sqlalchemy.git
+ 
+ ## Install dependencies:
+pip install -r requirements.txt
+
+## Run migrations to set up the database:
+python manage.py db init
+python manage.py db migrate
+python manage.py db upgrade
+
+## Seed the database with sample data:
+python seeds.py
+ 
+ ## Usage
+The application provides various methods to interact with the models and relationships. Test these methods in the app.py file.
+
+## Object Relationship Methods
+Review
+Review.customer() - Returns the Customer instance for this review
+Review.restaurant() - Returns the Restaurant instance for this review
+
+Restaurant
+Restaurant.reviews() - Returns all reviews for the restaurant
+Restaurant.customers() - Returns all customers who reviewed the restaurant
+
+Customer
+Customer.reviews() - Returns all reviews left by the customer
+Customer.restaurants() - Returns all restaurants reviewed by the customer
+Aggregate and Relationship Methods
+Customer
+
+Customer.full_name() - Returns the full name of the customer
+Customer.favorite_restaurant() - Returns the restaurant with the highest star rating
+Customer.add_review(restaurant, rating) - Adds a new review for the restaurant
+Customer.delete_reviews(restaurant) - Deletes all reviews for the given restaurant
+Review
+
+Review.full_review() - Returns a formatted string with review details
+Restaurant
+
+Restaurant.fanciest() - Returns the restaurant with the highest price
+Restaurant.all_reviews() - Returns a list of strings with all reviews for the restaurant
+ 
+## Author
+mohammed salad
+# phase-3-challenge2
